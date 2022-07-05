@@ -1,0 +1,10 @@
+# dependices
+node_modules
+yarn-error.log
+
+# build
+.next
+.swc
+
+# ide
+.idea
