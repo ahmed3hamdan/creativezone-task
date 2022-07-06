@@ -1,6 +1,7 @@
 @import "styles/mixins/breakpoint";
 
 .root {
+  scroll-margin-top: 4rem;
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
 
@@ -12,6 +13,7 @@
   @include breakpoint(md) {
     padding-top: 3rem;
     padding-bottom: 3rem;
+    scroll-margin-top: 5.5rem;
   }
 
   @include breakpoint(lg) {

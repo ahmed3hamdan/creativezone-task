@@ -3,6 +3,10 @@
 .root {
   position: relative;
   min-height: 34rem;
+  scroll-margin-top: 4rem;
+  @include breakpoint(md) {
+    scroll-margin-top: 5.5rem;
+  }
 }
 
 .bgWrapper {
