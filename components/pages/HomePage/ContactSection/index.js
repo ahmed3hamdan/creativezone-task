@@ -1,13 +1,14 @@
-import Container from "components/shared/Container";
+import { Field, Form, Formik } from "formik";
+import PhoneInput from "react-phone-number-input/input";
 import Image from "next/image";
-import classes from "./styles.module.scss";
-import bgImage from "./background.png";
 import Title from "components/shared/Title";
 import TextInput from "components/shared/TextInput";
 import Button from "components/shared/Button";
-import { Field, Form, Formik } from "formik";
-import * as Yup from "yup";
-import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input/input";
+import Container from "components/shared/Container";
+import contactSchema from "schemas/contactSchema";
+import classes from "./styles.module.scss";
+import bgImage from "./background.png";
+import { useRef } from "react";
 
 const initialValues = {
   fullName: "",
@@ -15,22 +16,27 @@ const initialValues = {
   mobile: "",
 };
 
-const schema = Yup.object().shape({
-  fullName: Yup.string().label("Full Name").min(5).max(100).required(),
-  email: Yup.string().label("Email").email().required(),
-  mobile: Yup.string()
-    .label("Mobile")
-    .required()
-    .test(
-      "phoneNumber",
-      "${path} is not a valid phone number",
-      value => !isNaN(value) && isValidPhoneNumber(value)
-    ),
-});
-
 const ContactSection = props => {
-  const handleSubmit = async values => {
-    console.log(values);
+  const formikRef = useRef();
+
+  const handleSubmit = async data => {
+    const response = await fetch("/api/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (response.status === 200) {
+      alert(
+        "Thank you for reaching out. I've got your message and will get back to you soon…"
+      );
+      return formikRef.current?.resetForm();
+    }
+
+    const responseText = await response.text();
+    alert(`An error occurred while sending the email: ${responseText}`);
   };
 
   return (
@@ -44,9 +50,17 @@ const ContactSection = props => {
           <Formik
             initialValues={initialValues}
             onSubmit={handleSubmit}
-            validationSchema={schema}
+            validationSchema={contactSchema}
+            innerRef={formikRef}
           >
-            {({ errors, touched, values, setFieldValue, handleBlur }) => (
+            {({
+              isSubmitting,
+              errors,
+              touched,
+              values,
+              setFieldValue,
+              handleBlur,
+            }) => (
               <Form className={classes.form} noValidate>
                 <Field
                   as={TextInput}
@@ -54,6 +68,7 @@ const ContactSection = props => {
                   name="fullName"
                   label="Full Name"
                   errorMessage={touched.fullName && errors.fullName}
+                  disabled={isSubmitting}
                 />
                 <TextInput
                   component={PhoneInput}
@@ -64,6 +79,7 @@ const ContactSection = props => {
                   onChange={value => setFieldValue("mobile", value)}
                   onBlur={handleBlur}
                   errorMessage={touched.mobile && errors.mobile}
+                  disabled={isSubmitting}
                 />
                 <Field
                   as={TextInput}
@@ -72,9 +88,14 @@ const ContactSection = props => {
                   type="email"
                   label="Email"
                   errorMessage={touched.email && errors.email}
+                  disabled={isSubmitting}
                 />
-                <Button type="submit" className={classes.button}>
-                  Submit
+                <Button
+                  type="submit"
+                  className={classes.button}
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? "Submitting..." : "Submit"}
                 </Button>
               </Form>
             )}

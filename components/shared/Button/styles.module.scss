@@ -21,4 +21,9 @@
   &:focus {
     background-color: darken(#00cdfd, 5%);
   }
+
+  &:disabled {
+    color: gray;
+    background-color: lightgray;
+  }
 }

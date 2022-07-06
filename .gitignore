@@ -8,3 +8,6 @@ yarn-error.log
 
 # ide
 .idea
+
+# environment variables
+.env
