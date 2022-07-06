@@ -12,6 +12,7 @@ const HeadSection = props => (
         objectFit="cover"
         objectPosition="center"
         priority
+        alt="Heading Image"
       />
     </div>
     <div className={classes.header}>
@@ -25,5 +26,7 @@ const HeadSection = props => (
     </div>
   </section>
 );
+
+HeadSection.displayName = "HeadSection";
 
 export default HeadSection;

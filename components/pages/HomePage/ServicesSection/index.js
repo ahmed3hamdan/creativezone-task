@@ -20,7 +20,7 @@ const ServicesSection = props => (
           <Card.Icon icon={faHandshake} />
           <Card.Title>Business Setup</Card.Title>
           <Card.Description>
-            Get a full range of business setup solutions from the region's
+            Get a full range of business setup solutions from the region&apos;s
             finest business setup experts…
           </Card.Description>
           <Link href="/" passHref>

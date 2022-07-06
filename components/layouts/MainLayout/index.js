@@ -36,4 +36,6 @@ const MainLayout = ({ children }) => {
   );
 };
 
+MainLayout.displayName = "MainLayout";
+
 export default MainLayout;

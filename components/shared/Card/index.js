@@ -10,6 +10,8 @@ const Card = ({ className, dark, ...rest }) => (
   />
 );
 
+Card.displayName = "Card";
+
 Card.Icon = ({ className, icon, ...rest }) => (
   <FontAwesomeIcon
     icon={icon}
@@ -18,13 +20,19 @@ Card.Icon = ({ className, icon, ...rest }) => (
   />
 );
 
+Card.Icon.displayName = "Card.Icon";
+
 Card.Title = ({ className, ...rest }) => (
   <h4 className={clsx(classes.title, className)} {...rest} />
 );
 
+Card.Title.displayName = "Card.Title";
+
 Card.Description = ({ className, ...rest }) => (
   <p className={clsx(classes.description, className)} {...rest} />
 );
+
+Card.Description.displayName = "Card.Description";
 
 Card.Button = forwardRef(
   ({ component: Component = "a", className, ...rest }, ref) => (
@@ -35,5 +43,7 @@ Card.Button = forwardRef(
     />
   )
 );
+
+Card.Button.displayName = "Card.Button";
 
 export default Card;

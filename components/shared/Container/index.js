@@ -13,4 +13,6 @@ const Container = ({
   />
 );
 
+Container.displayName = "Container";
+
 export default Container;

@@ -18,6 +18,8 @@ const Navbar = ({ className, ...rest }) => {
   );
 };
 
+Navbar.displayName = "Navbar";
+
 Navbar.Brand = forwardRef(
   ({ component: Component = "a", className, ...rest }, ref) => (
     <Component className={clsx(classes.brand, className)} {...rest} ref={ref}>
@@ -26,7 +28,9 @@ Navbar.Brand = forwardRef(
   )
 );
 
-Navbar.List = ({ className, ...rest }) => {
+Navbar.Brand.displayName = "Navbar.Brand";
+
+const List = ({ className, ...rest }) => {
   const { listOpen } = useContext(context);
   return (
     <CSSTransition in={listOpen} timeout={300} classNames={listTransition}>
@@ -35,29 +39,40 @@ Navbar.List = ({ className, ...rest }) => {
   );
 };
 
+Navbar.List = List;
+
+Navbar.List.displayName = "Navbar.List";
+
 Navbar.ListItem = ({ className, ...rest }) => (
   <li className={clsx(classes.listItem, className)} {...rest} />
 );
 
-Navbar.Link = forwardRef(
-  ({ component: Component = "a", className, onClick, ...rest }, ref) => {
-    const { setListOpen } = useContext(context);
-    const handleClick = e => {
-      setListOpen(false);
-      onClick && onClick(e);
-    };
-    return (
-      <Component
-        className={clsx(classes.listLink, className)}
-        onClick={handleClick}
-        {...rest}
-        ref={ref}
-      />
-    );
-  }
-);
+Navbar.ListItem.displayName = "Navbar.ListItem";
 
-Navbar.ListButton = ({ className, ...rest }) => {
+const Link = (
+  { component: Component = "a", className, onClick, ...rest },
+  ref
+) => {
+  const { setListOpen } = useContext(context);
+  const handleClick = e => {
+    setListOpen(false);
+    onClick && onClick(e);
+  };
+  return (
+    <Component
+      className={clsx(classes.listLink, className)}
+      onClick={handleClick}
+      {...rest}
+      ref={ref}
+    />
+  );
+};
+
+Navbar.Link = forwardRef(Link);
+
+Navbar.Link.displayName = "Navbar.Link";
+
+const ListButton = ({ className, ...rest }) => {
   const { listOpen, setListOpen } = useContext(context);
   const handleClick = () => setListOpen(state => !state);
   return (
@@ -70,5 +85,9 @@ Navbar.ListButton = ({ className, ...rest }) => {
     </button>
   );
 };
+
+Navbar.ListButton = ListButton;
+
+Navbar.ListButton.displayName = "Navbar.ListButton";
 
 export default Navbar;

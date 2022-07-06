@@ -42,7 +42,12 @@ const ContactSection = props => {
   return (
     <section className={classes.root} {...props}>
       <div className={classes.bgWrapper}>
-        <Image src={bgImage} layout="fill" objectFit="cover" />
+        <Image
+          src={bgImage}
+          layout="fill"
+          objectFit="cover"
+          alt="Contact Image"
+        />
       </div>
       <Container size="xl" className={classes.container}>
         <div className={classes.formWrapper}>
@@ -105,5 +110,7 @@ const ContactSection = props => {
     </section>
   );
 };
+
+ContactSection.displayName = "ContactSection";
 
 export default ContactSection;
