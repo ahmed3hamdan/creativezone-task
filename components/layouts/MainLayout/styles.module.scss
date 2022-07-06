@@ -1,0 +1,19 @@
+@import "styles/mixins/breakpoint";
+
+.root {
+  padding-top: 4rem;
+  @include breakpoint(md) {
+    padding-top: 5.5rem;
+  }
+}
+
+
+.navbarContainer {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.navbarBrand {
+  margin-right: auto;
+}

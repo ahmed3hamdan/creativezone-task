@@ -1,0 +1,107 @@
+@import "styles/mixins/breakpoint";
+
+.navbar {
+  position: fixed;
+  z-index: 10;
+  left: 0;
+  right: 0;
+  top: 0;
+  background-color: #071733;
+  height: 4rem;
+  @include breakpoint(md) {
+    height: 5.5rem;
+  }
+}
+
+.brand {
+  color: #FFFFFF;
+  font-weight: 900;
+  letter-spacing: 0.0625em;
+  text-decoration: none;
+  font-size: 1.25rem;
+  @include breakpoint(md) {
+    font-size: 2rem;
+  }
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  padding-left: 0;
+  list-style: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  background-color: #071733;
+  border-top: 0.0625rem solid mix(#071733, #FFFFFF, 85%);
+  border-bottom: 0.0625rem solid mix(#071733, #FFFFFF, 85%);
+  visibility: hidden;
+
+  @include breakpoint(md) {
+    visibility: visible;
+    position: static;
+    flex-direction: row;
+    background-color: transparent;
+    border-top: none;
+    border-bottom: none;
+  }
+}
+
+.listItem {
+
+  &:nth-child(even) {
+    .listLink {
+      background-color: rgba(#FFFFFF, .05);
+      @include breakpoint(md) {
+        background-color: transparent;
+      }
+    }
+  }
+
+  @include breakpoint(md) {
+    & + .listItem {
+      margin-left: 2rem;
+    }
+  }
+}
+
+.listLink {
+  padding: 1rem;
+  display: block;
+  color: #FFFFFF;
+  text-decoration: none;
+  text-transform: uppercase;
+
+  &.listLink:hover {
+    background-color: rgba(#FFFFFF, .1);
+    @include breakpoint(md) {
+      background-color: transparent;
+    }
+  }
+
+  @include breakpoint(md) {
+    font-size: 1.25rem;
+    padding: 0;
+
+    &:hover {
+      color: mix(#071733, #FFFFFF, 30%);
+    }
+  }
+}
+
+.listButton {
+  background-color: transparent;
+  border: none;
+  color: #FFFFFF;
+  cursor: pointer;
+  width: 2rem;
+  height: 2rem;
+  padding: .25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @include breakpoint(md) {
+    display: none;
+  }
+}

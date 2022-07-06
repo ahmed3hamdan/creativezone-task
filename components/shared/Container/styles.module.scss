@@ -1,0 +1,17 @@
+@import "styles/mixins/breakpoint";
+
+.container {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  @include breakpoint(md) {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+  @each $breakpoint, $width in $breakpoints {
+    &.container-#{$breakpoint} {
+      max-width: $width - 64px;
+    }
+  }
+}

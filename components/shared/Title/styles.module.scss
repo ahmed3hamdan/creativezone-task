@@ -1,0 +1,33 @@
+@import "styles/mixins/breakpoint";
+
+.title {
+  color: #071733;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 1.5rem;
+  @include breakpoint(sm) {
+    font-size: 2rem;
+  }
+  @include breakpoint(md) {
+    font-size: 2.5rem;
+  }
+  @include breakpoint(lg) {
+    font-size: 2.75rem;
+  }
+
+  &.underlined {
+    position: relative;
+    padding-bottom: .375em;
+    width: fit-content;
+
+    &:after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 0.2em;
+      background-color: #5ce0fe;
+    }
+  }
+}

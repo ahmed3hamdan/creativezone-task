@@ -1,0 +1,24 @@
+@import "styles/mixins/breakpoint";
+
+.button {
+  display: block;
+  width: 100%;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #071733;
+  background-color: #5ce0fe;
+  padding: .75em;
+  border-radius: 2em;
+  text-align: center;
+  font-weight: 900;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    background-color: lighten(#00cdfd, 10%);
+  }
+
+  &:focus {
+    background-color: darken(#00cdfd, 5%);
+  }
+}

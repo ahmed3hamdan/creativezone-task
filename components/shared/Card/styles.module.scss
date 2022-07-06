@@ -1,0 +1,62 @@
+@import "styles/mixins/breakpoint";
+
+.card {
+  background-color: white;
+  padding: 2rem 1.75rem 2.75rem;
+  border-radius: .75rem;
+  display: flex;
+  flex-direction: column;
+  box-shadow: rgba(#000000, 0.25) 0 0.1875rem 0.75rem;
+  gap: .875rem;
+
+  &.dark {
+    background-color: #071733;
+  }
+}
+
+.icon {
+  color: #00cdfd;
+  width: 3rem;
+  height: 3rem;
+}
+
+.title {
+  color: #000000;
+
+  .dark & {
+    color: #FFFFFF;
+  }
+
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 1.125rem;
+}
+
+.description {
+  color: mix(#000000, #FFFFFF, 65%);
+
+  .dark & {
+    color: mix(#FFFFFF, #071733, 65%);
+  }
+}
+
+.button {
+  font-size: 14px;
+  text-decoration: none;
+  align-self: flex-start;
+  display: block;
+  text-transform: uppercase;
+  color: white;
+  background-color: #00cdfd;
+  padding: .125em .5em;
+  border-radius: 1em;
+  font-weight: 700;
+
+  &:hover {
+    background-color: lighten(#00cdfd, 10%);
+  }
+
+  &:focus {
+    background-color: darken(#00cdfd, 5%);
+  }
+}

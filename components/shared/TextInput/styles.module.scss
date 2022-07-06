@@ -1,0 +1,33 @@
+@import "styles/mixins/breakpoint";
+
+.root {
+  display: flex;
+  flex-direction: column;
+  color: #071733;
+}
+
+.label {
+  font-weight: bold;
+  align-self: flex-start;
+  font-size: 0.875em;
+}
+
+.input {
+  margin-top: .5em;
+  border: 0.0625em solid currentColor;
+  padding: .5em .5em;
+
+  .error & {
+    color: red;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.errorMessage {
+  color: red;
+  font-size: .75em;
+  margin-top: .25em;
+}
